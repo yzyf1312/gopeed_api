@@ -1,2 +1,2 @@
 # gopeed_api
-A dart project provide Gopeed downloader Rest API interacting.
+A dart project provide [Gopeed downloader](https://gopeed.com/) Rest API interacting.

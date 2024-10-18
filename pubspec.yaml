@@ -1,7 +1,7 @@
 name: gopeed_api
 description: A dart project provide Gopeed downloader Rest API interacting.
 version: 1.0.0
-# repository: https://github.com/yzyf1312/gopeed_api
+repository: https://github.com/yzyf1312/gopeed_api
 
 environment:
   sdk: ^3.5.3
