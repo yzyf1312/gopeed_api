@@ -2,6 +2,8 @@ import 'dart:convert' as convert;
 
 import 'package:http/http.dart' as http;
 
+/// Gopeed api: [Get server info](https://docs.gopeed.com/site/openapi/index.html#get-/api/v1/info).
+/// method: GET
 Future<http.Response> getServerInfo(String host) {
   Uri targetUri = Uri.http(host, "/api/v1/info");
 
@@ -74,6 +76,8 @@ Map<String, dynamic>? _buildBtExtra({List<String>? trackers}) {
   }
 }
 
+/// Gopeed api: [Resolve a request](https://docs.gopeed.com/site/openapi/index.html#post-/api/v1/resolve).
+/// method: POST
 Future<http.Response> resolveAHttpRequest(String host, String fileUrl,
     {String? method,
     Map<String, String>? header,
@@ -93,6 +97,8 @@ Future<http.Response> resolveAHttpRequest(String host, String fileUrl,
   return http.post(targetUri, body: convert.jsonEncode(payload));
 }
 
+/// Gopeed api: [Resolve a request](https://docs.gopeed.com/site/openapi/index.html#post-/api/v1/resolve).
+/// method: POST
 Future<http.Response> resolveABtRequest(String host, String fileUrl,
     {List<String>? trackers, Map<String, String>? labels}) {
   Uri targetUri = Uri.http(host, "/api/v1/resolve");
@@ -107,6 +113,8 @@ Future<http.Response> resolveABtRequest(String host, String fileUrl,
   return http.post(targetUri, body: convert.jsonEncode(payload));
 }
 
+/// Gopeed api: [Get task list](https://docs.gopeed.com/site/openapi/index.html#get-/api/v1/tasks).
+/// method: GET
 Future<http.Response> getTaskList(String host,
     {List<String>? id, List<String>? status, List<String>? notStatus}) {
   Map<String, dynamic> queryParametersMap = {};
@@ -129,6 +137,8 @@ Future<http.Response> getTaskList(String host,
   return http.get(targetUri);
 }
 
+/// Gopeed api: [Create a task](https://docs.gopeed.com/site/openapi/index.html#post-/api/v1/tasks).
+/// method: POST
 Future<http.Response> createAHttpTask(String host, String ridOrFileUrl,
     {String? fileName,
     String? filePath,
@@ -187,6 +197,8 @@ Future<http.Response> createAHttpTask(String host, String ridOrFileUrl,
   return http.post(targetUri, body: convert.jsonEncode(payload));
 }
 
+/// Gopeed api: [Create a task](https://docs.gopeed.com/site/openapi/index.html#post-/api/v1/tasks).
+/// method: POST
 Future<http.Response> createABtTask(String host, String ridOrFileUrl,
     {String? fileName,
     String? filePath,
@@ -242,6 +254,8 @@ Future<http.Response> createABtTask(String host, String ridOrFileUrl,
   return http.post(targetUri, body: convert.jsonEncode(payload));
 }
 
+/// Gopeed api: [Delete tasks](https://docs.gopeed.com/site/openapi/index.html#delete-/api/v1/tasks).
+/// method: DELETE
 Future<http.Response> deleteTasks(String host,
     {List<String>? id,
     List<String>? status,
@@ -270,6 +284,8 @@ Future<http.Response> deleteTasks(String host,
   return http.delete(targetUri);
 }
 
+/// Gopeed api: [Create a batch of tasks](https://docs.gopeed.com/site/openapi/index.html#post-/api/v1/tasks/batch).
+/// method: POST
 Future<http.Response> createABatchOfHttpTasks(
     String host, List<String> fileUrlList,
     {String? fileName,
@@ -320,6 +336,8 @@ Future<http.Response> createABatchOfHttpTasks(
   return http.post(targetUri, body: convert.jsonEncode(payload));
 }
 
+/// Gopeed api: [Create a batch of tasks](https://docs.gopeed.com/site/openapi/index.html#post-/api/v1/tasks/batch).
+/// method: POST
 Future<http.Response> createABatchOfBtTasks(
     String host, List<String> fileUrlList,
     {String? fileName,
@@ -364,12 +382,16 @@ Future<http.Response> createABatchOfBtTasks(
   return http.post(targetUri, body: convert.jsonEncode(payload));
 }
 
+/// Gopeed api: [Get task info](https://docs.gopeed.com/site/openapi/index.html#get-/api/v1/tasks/-id-).
+/// method: GET
 Future<http.Response> getTaskInfo(String host, String id) {
   Uri targetUri = Uri.http(host, "/api/v1/tasks/$id");
 
   return http.get(targetUri);
 }
 
+/// Gopeed api: [Delete a task](https://docs.gopeed.com/site/openapi/index.html#delete-/api/v1/tasks/-id-).
+/// method: DELETE
 Future<http.Response> deleteATask(String host, String id, {bool? force}) {
   Uri targetUri = Uri.http(
       host, "/api/v1/tasks/$id", force != null ? {"force": force} : null);
@@ -377,18 +399,24 @@ Future<http.Response> deleteATask(String host, String id, {bool? force}) {
   return http.delete(targetUri);
 }
 
+/// Gopeed api: [Get task stats](https://docs.gopeed.com/site/openapi/index.html#get-/api/v1/tasks/-id-/stats).
+/// method: GET
 Future<http.Response> getTaskStats(String host, String id) {
   Uri targetUri = Uri.http(host, "/api/v1/tasks/$id/stats");
 
   return http.get(targetUri);
 }
 
+/// Gopeed api: [Pause a task](https://docs.gopeed.com/site/openapi/index.html#put-/api/v1/tasks/-id-/pause).
+/// method: PUT
 Future<http.Response> pauseATask(String host, String id) {
   Uri targetUri = Uri.http(host, "/api/v1/tasks/$id/pause");
 
   return http.put(targetUri);
 }
 
+/// Gopeed api: [Pause a batch of tasks](https://docs.gopeed.com/site/openapi/index.html#put-/api/v1/tasks/pause).
+/// method: PUT
 Future<http.Response> pauseABatchOfTasks(String host,
     {List<String>? id, List<String>? status, List<String>? notStatus}) {
   Map<String, dynamic> queryParametersMap = {};
@@ -407,12 +435,16 @@ Future<http.Response> pauseABatchOfTasks(String host,
   return http.put(targetUri);
 }
 
+/// Gopeed api: [Continue a task](https://docs.gopeed.com/site/openapi/index.html#put-/api/v1/tasks/-id-/continue).
+/// method: PUT
 Future<http.Response> continueATask(String host, String id) {
   Uri targetUri = Uri.http(host, "/api/v1/tasks/$id/continue");
 
   return http.put(targetUri);
 }
 
+/// Gopeed api: [Continue a batch of tasks](https://docs.gopeed.com/site/openapi/index.html#put-/api/v1/tasks/continue).
+/// method: PUT
 Future<http.Response> continueABatchOfTasks(String host,
     {List<String>? id, List<String>? status, List<String>? notStatus}) {
   Map<String, dynamic> queryParametersMap = {};

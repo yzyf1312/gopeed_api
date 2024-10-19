@@ -1,7 +1,12 @@
+## 1.0.2
+
+- Added comments that comply with dart doc conventions.
+- Translated Chinese content in `CHANGELOG.md` to English.
+
 ## 1.0.1
 
-- 处理了由于库文件路径不正确导致的无法使用的问题。
+- Addressed an issue where the library could not be used due to incorrect file paths.
 
 ## 1.0.0
 
-- 新的开端，祝好运🎉
+- New beginning, good luck 🎉
