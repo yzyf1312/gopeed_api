@@ -1,3 +1,7 @@
+## 1.0.3
+
+- Trying to fix a bug that prevented request headers from being constructed correctly.
+
 ## 1.0.2
 
 - Added comments that comply with dart doc conventions.

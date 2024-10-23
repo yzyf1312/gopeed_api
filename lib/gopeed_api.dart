@@ -52,13 +52,14 @@ Map<String, dynamic>? _buildTaskOpt(
       opt["selectFiles"] = selectFiles;
     }
     if (connections != null || autoTorrent != null) {
-      opt["extra"] = <String, dynamic>{};
+      Map<String, dynamic> extra = {};
       if (connections != null) {
-        opt["extra"]["connections"] = connections;
+        extra["connections"] = connections;
       }
       if (autoTorrent != null) {
-        opt["extra"]["autoTorrent"] = autoTorrent;
+        extra["autoTorrent"] = autoTorrent;
       }
+      opt["extra"] = extra;
     }
     return opt;
   } else {
@@ -171,9 +172,8 @@ Future<http.Response> createAHttpTask(String host, String ridOrFileUrl,
   } else {
     // 传入 url 时的逻辑
     String fileUrl = ridOrFileUrl;
-    payload = {
-      "req": {"url": fileUrl}
-    };
+    Map<String, dynamic> req = {"url": fileUrl};
+    payload = {};
     if (fileName != null ||
         filePath != null ||
         selectFiles != null ||
@@ -187,12 +187,13 @@ Future<http.Response> createAHttpTask(String host, String ridOrFileUrl,
           autoTorrent: autoTorrent);
     }
     if (method != null || header != null || body != null) {
-      payload["req"]["extra"] =
+      req["extra"] =
           _buildHttpExtra(method: method, header: header, body: body);
     }
     if (labels != null) {
-      payload["req"]["labels"] = labels;
+      req["labels"] = labels;
     }
+    payload["req"] = req;
   }
   return http.post(targetUri, body: convert.jsonEncode(payload));
 }
@@ -229,9 +230,8 @@ Future<http.Response> createABtTask(String host, String ridOrFileUrl,
   } else {
     // 传入 url 时的逻辑
     String fileUrl = ridOrFileUrl;
-    payload = {
-      "req": {"url": fileUrl}
-    };
+    Map<String, dynamic> req = {"url": fileUrl};
+    payload = {};
     if (fileName != null ||
         filePath != null ||
         selectFiles != null ||
@@ -245,11 +245,12 @@ Future<http.Response> createABtTask(String host, String ridOrFileUrl,
           autoTorrent: autoTorrent);
     }
     if (trackers != null) {
-      payload["req"]["extra"] = _buildBtExtra(trackers: trackers);
+      req["extra"] = _buildBtExtra(trackers: trackers);
     }
     if (labels != null) {
-      payload["req"]["labels"] = labels;
+      req["labels"] = labels;
     }
+    payload["req"] = req;
   }
   return http.post(targetUri, body: convert.jsonEncode(payload));
 }
