@@ -149,11 +149,12 @@ Future<http.Response> createAHttpTask(String host, String ridOrFileUrl,
     String? method,
     Map<String, String>? header,
     String? body,
-    Map<String, String>? labels}) {
+    Map<String, String>? labels,
+    bool useRid = false}) {
   Uri targetUri = Uri.http(host, "/api/v1/tasks");
 
   Map<String, dynamic> payload;
-  if (Uri.tryParse(ridOrFileUrl) == null) {
+  if (useRid) {
     // 传入 rid 时的逻辑
     String rid = ridOrFileUrl;
     payload = {"rid": rid};
@@ -207,11 +208,12 @@ Future<http.Response> createABtTask(String host, String ridOrFileUrl,
     int? connections,
     bool? autoTorrent,
     List<String>? trackers,
-    Map<String, String>? labels}) {
+    Map<String, String>? labels,
+    bool useRid = false}) {
   Uri targetUri = Uri.http(host, "/api/v1/tasks");
 
   Map<String, dynamic> payload;
-  if (Uri.tryParse(ridOrFileUrl) == null) {
+  if (useRid) {
     // 传入 rid 时的逻辑
     String rid = ridOrFileUrl;
     payload = {"rid": rid};
