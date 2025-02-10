@@ -54,10 +54,10 @@ Map<String, dynamic>? _buildTaskOpt(
     if (connections != null || autoTorrent != null) {
       Map<String, dynamic> extra = {};
       if (connections != null) {
-        extra["connections"] = connections;
+        extra["connections"] = "$connections";
       }
       if (autoTorrent != null) {
-        extra["autoTorrent"] = autoTorrent;
+        extra["autoTorrent"] = autoTorrent ? "true" : "false";
       }
       opt["extra"] = extra;
     }
@@ -275,7 +275,7 @@ Future<http.Response> deleteTasks(String host,
     queryParametersMap["notStatus"] = notStatus;
   }
   if (force != null) {
-    queryParametersMap["force"] = force;
+    queryParametersMap["force"] = force ? "true" : "false";
   }
 
   Uri targetUri = Uri.http(
@@ -396,8 +396,8 @@ Future<http.Response> getTaskInfo(String host, String id) {
 /// Gopeed api: [Delete a task](https://docs.gopeed.com/site/openapi/index.html#delete-/api/v1/tasks/-id-).
 /// method: DELETE
 Future<http.Response> deleteATask(String host, String id, {bool? force}) {
-  Uri targetUri = Uri.http(
-      host, "/api/v1/tasks/$id", force != null ? {"force": force} : null);
+  Uri targetUri = Uri.http(host, "/api/v1/tasks/$id",
+      force != null ? {"force": force ? "true" : "false"} : null);
 
   return http.delete(targetUri);
 }

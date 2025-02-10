@@ -1,3 +1,8 @@
+## 1.0.5
+
+- Fixed a crash caused by non - iterable objects. The exception was as follows:
+  - **Exception Message** : `Unhandled exception: type 'bool' is not a subtype of type 'Iterable<dynamic>'`
+
 ## 1.0.4
 
 - Fixed a bug where Function `createAHttpTask` and Function `createABtTask` were unable to accept rid as the value of the `ridOrFileUrl` parameter. Now, developers can pass `true` to the `useRid` parameter to use rid as the value of the `ridOrFileUrl` parameter.
